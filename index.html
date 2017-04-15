@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+       <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+       
+        
+         
+        <div id="app"></div>
+        
+        <!--<div class="pager"></div>
+
+        <span class="pager span"></span>
+        <span class="page-number"></span>-->
+
+        <form>
+            <input type="text" id="textField">
+            <input id="filtr" type="button" value="Szukaj">
+        </form>
+
+        <select id="select" name="selectData">
+                    <option value="NAME">Name</option>
+                    <option value="IDD">Id</option>
+                    <option value="FUN">Function</option>
+        </select>
+
+        <!--<button type="button" id = "hourPicker">Click Me!</button>-->
+        <table class="paginated , sortable, removable" id="myTable">
+            <thead>
+                <tr>
+                    <th id="id">ID</th>
+                    <th id="name">Name</th>
+                    <th id="lastName">Surname</th>
+                    <th id="birthDate">Birth Date</th>
+                    <th id="function" >Function</th>
+                    <th id="experience">Experience</th>
+                </tr>
+            </thead>
+                <tbody >   
+                </tbody>
+        </table>
+        
+        <script src="./bundle.js" ></script>      
+</body>
+</html>
