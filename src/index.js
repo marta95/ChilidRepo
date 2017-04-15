@@ -13,14 +13,14 @@ function myFunction(callback){
 
 myFunction(function(myArray){
    
-   filtFF(myArray);
+   filtFunction(myArray);
    sortId(myArray);
    sortExp(myArray);
    sortName(myArray);
    sortLastName(myArray);
    sortFunction(myArray);
    sortDate(myArray);
- 
+   //fieldToggle();
 
    var arr = [];
    arr = parseHour(myArray[2].dateOfBirth);
@@ -65,9 +65,9 @@ function sortId(myArray){
        deleterow(arr1);
        var arr=[];
        arr = myArray;
-       console.log(arr);
+       //console.log(arr);
        var arr1 = bubbleSortId(arr);
-       console.log(arr1);
+       //console.log(arr1);
        tableMaker(arr1);
    }
 };
@@ -78,9 +78,9 @@ function sortExp(myArray){
        deleterow(arr1);
        var arr=[];
        arr = myArray;
-       console.log(arr);
+       //console.log(arr);
        var arr1 = bubbleSortExp(arr);
-       console.log(arr1);
+       //console.log(arr1);
        tableMaker(arr1);
    }
 };
@@ -91,9 +91,9 @@ function sortName(myArray){
        deleterow(arr1);
        var arr=[];
        arr = myArray;
-       console.log(arr);
+       //console.log(arr);
        var arr1 = bubbleSortName(arr);
-       console.log(arr1);
+      // console.log(arr1);
        tableMaker(arr1);
    } 
 };
@@ -104,9 +104,9 @@ function sortLastName(myArray){
        deleterow(arr1);
        var arr=[];
        arr = myArray;
-       console.log(arr);
+       //console.log(arr);
        var arr1 = bubbleSortSurname(arr);
-       console.log(arr1);
+       //console.log(arr1);
        tableMaker(arr1);
    } 
 };
@@ -117,9 +117,9 @@ function sortFunction(myArray){
        deleterow(arr1);
        var arr=[];
        arr = myArray;
-       console.log(arr);
+       //console.log(arr);
        var arr1 = bubbleSortFunction(arr);
-       console.log(arr1);
+       //console.log(arr1);
        tableMaker(arr1);
    } 
 };
@@ -130,9 +130,9 @@ function sortDate(myArray){
        deleterow(arr1);
        var arr=[];
        arr = myArray;
-       console.log(arr);
+       //console.log(arr);
        var arr1 = bubbleSortDate(arr);
-       console.log(arr1);
+       //console.log(arr1);
        tableMaker(arr1);
    } 
 };
@@ -143,9 +143,9 @@ function sortHour(myArray){
        deleterow(arr1);
        var arr=[];
        arr = myArray;
-       console.log(arr);
+       //console.log(arr);
        var arr1 = bubbleSortHour(arr);
-       console.log(arr1);
+       //console.log(arr1);
        tableMaker(arr1);
    } 
 };
@@ -318,26 +318,26 @@ function bubbleSortHour(array) {
 
 
 
-function filtFF(array)
+function filtFunction(array)
 {
     document.getElementById("filtr").onclick = function(){
-    if(document.getElementById("select").value === "FUN")
+    if(document.getElementById("select").value === "id")
         {
             var txt = document.getElementById("textField").value;
+            var txt1 =document.getElementById("textField1").value;
             console.log(txt);
+            console.log(txt1);
             var arr = [];
             for(var i = 0; i<array.length;i++)
             {
-                if(txt==array[i].function)
+                if(txt <= array[i].id && txt1 >= array[i].id)
                 {
                     arr.push(array[i]);
-                    console.log(arr);
+                    deleterow(arr);
+                    tableMaker(arr);
                 }
             }
-            deleterow(arr);
-            tableMaker(arr);
-        }
-        else if(document.getElementById("select").value === "NAME")
+        }else if(document.getElementById("select").value === "name")
         {
             var txt = document.getElementById("textField").value;
             console.log(txt);
@@ -345,30 +345,77 @@ function filtFF(array)
             debugger;
             for(var i = 0; i<array.length;i++)
             {
-                if(txt == array[i].firstName)
+                if(txt === array[i].firstName)
                 {
                     arr.push(array[i]);
-                    console.log(arr);
+                    deleterow(arr);
+                    tableMaker(arr);
                 }
             }
-            deleterow(arr);
-            tableMaker(arr);
-        }/*else if(document.getElementById("select").value === "NAME")
+        }else if(document.getElementById("select").value === "surname")
         {
             var txt = document.getElementById("textField").value;
             console.log(txt);
             var arr = [];
             for(var i = 0; i<array.length;i++)
             {
-                if(txt==array[i].lastName)
+                if(txt === array[i].lastName)
                 {
                     arr.push(array[i]);
-                    console.log(arr);
+                    deleterow(arr);
+                    tableMaker(arr);
                 }
             }
-            deleterow(arr);
-            tableMaker(arr);
-        }*/
+        }else if(document.getElementById("select").value === "function")
+        {
+            var txt = document.getElementById("textField").value;
+            console.log(txt);
+            var arr = [];
+            for(var i = 0; i<array.length;i++)
+            {
+                if(txt === array[i].function)
+                {
+                    arr.push(array[i]);
+                    deleterow(arr);
+                    tableMaker(arr);
+                }
+            }
+        }else if (document.getElementById("select").value === "experience")
+        {
+            var txt = document.getElementById("textField").value;
+            var txt1 =document.getElementById("textField1").value;
+            console.log(txt);
+            console.log(txt1);
+            var arr = [];
+            for(var i = 0; i<array.length;i++)
+            {
+                if(txt <= array[i].experience && txt1 >= array[i].experience)
+                {
+                    arr.push(array[i]);
+                    deleterow(arr);
+                    tableMaker(arr);
+                }
+            }
+        }else if (document.getElementById("select").value === "birthdate")
+        {
+            var txt = document.getElementById("textField").value;
+            var txt1 =document.getElementById("textField1").value;
+            console.log(txt);
+            console.log(txt1);
+            
+            var arr = [];
+            var date = [];
+            var date1 = [];
+            for (var j = (array.length-1); j >= 0; j--) 
+            {
+                date = parseDate(array[j].dateOfBirth);
+                if(txt <= date[2] && txt1 >= date[2])
+                {
+                    arr.push(array[j]);
+                    deleterow(arr);
+                    tableMaker(arr);
+                }
+            }
+        }
     };
-    
 }
