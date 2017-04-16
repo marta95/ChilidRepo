@@ -1,38 +1,30 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-       <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-       
-        
-         
+<body> 
         <div id="app"></div>
         
-        <!--<div class="pager"></div>
-
-        <span class="pager span"></span>
-        <span class="page-number"></span>-->
-
         <form>
             <input type="text" id="textField">
             <input type="text" id="textField1">
-            <input id="filtr" type="button" value="Szukaj">
-        
+            <input id="filtr" type="button" value="Filtruj">
 
         <select id="select" name="selectData">
                     <option value="id">Id</option>
                     <option value="name">Name</option>
                     <option value="surname">Surname</option>
-                    <option value="birthdate">Birth date</option>
+                    <option value="birthdate">Birth year</option>
+                    <otuon value ="birthmonth">Birth month</option>
                     <option value="function">Function</option>
                     <option value="experience">Experience</option>
         </select>
-         </form>       
+        </form> 
+
         <!--<button type="button" id = "hourPicker">Click Me!</button>-->
-        <table class="paginated , sortable, removable" id="myTable">
+        <table class="paginated" id="myTable">
             <thead>
                 <tr>
                     <th id="id">ID</th>
@@ -43,8 +35,8 @@
                     <th id="experience">Experience</th>
                 </tr>
             </thead>
-                <tbody >   
-                </tbody>
+            <tbody >   
+            </tbody>
         </table>
         
         <script src="./bundle.js" ></script>      
