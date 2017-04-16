@@ -6,38 +6,59 @@
 </head>
 <body> 
         <div id="app"></div>
-        
         <form>
-            <input type="text" id="textField">
-            <input type="text" id="textField1">
-            <input id="filtr" type="button" value="Filtruj">
-
-        <select id="select" name="selectData">
+        <script>
+            function showField()
+            {
+                var choosen = document.getElementById("select").value;
+                var textField = document.getElementById("textField");
+                var textField1 = document.getElementById("textField1");
+                textField.value = "";
+                textField1.value = "";
+                if((choosen === "id")||(choosen === "experience")) {
+                    textField1.style.visibility ="visible";
+                    textField.placeholder = "Od:";
+                    textField1.placeholder = "Do:";
+                }else if(choosen === "birthDate"){
+                    textField1.style.visibility ="visible";
+                    textField.placeholder = "dd.mm.rrrr";
+                    textField1.placeholder = "dd.mm.rrrr";
+                }else{
+                    textField1.style.visibility = "hidden";
+                    textField.placeholder = "";
+                }
+            }
+        </script>
+        
+            <select id="select" name="selectData" onchange="showField()">
+                    <option value="name">Imię</option>
+                    <option value="surname">Nazwisko</option>
+                    <option value="function">Funkcja</option>
+                    <option value="birthDate">Data Urodzenia</option>
+                    <option value="experience">Doświadczenie</option>
                     <option value="id">Id</option>
-                    <option value="name">Name</option>
-                    <option value="surname">Surname</option>
-                    <option value="birthdate">Birth year</option>
-                    <otuon value ="birthmonth">Birth month</option>
-                    <option value="function">Function</option>
-                    <option value="experience">Experience</option>
-        </select>
-        </form> 
-
-        <!--<button type="button" id = "hourPicker">Click Me!</button>-->
+            </select>
+            <input type="text" id="textField">
+            <input type="text" id="textField1" class="hidden">
+            <input id="filtr" type="button" value="Filtruj">
+        </form>
+        <form> 
         <table class="paginated" id="myTable">
             <thead>
                 <tr>
                     <th id="id">ID</th>
-                    <th id="name">Name</th>
-                    <th id="lastName">Surname</th>
-                    <th id="birthDate">Birth Date</th>
-                    <th id="function" >Function</th>
-                    <th id="experience">Experience</th>
+                    <th id="name">Imię</th>
+                    <th id="lastName">Nazwisko</th>
+                    <th id="birthDate">Data Urodzenia</th>
+                    <th id="function" >Funkcja</th>
+                    <th id="experience">Doświadczenie</th>
                 </tr>
             </thead>
             <tbody >   
             </tbody>
         </table>
+        </form>
+        
         
         <script src="./bundle.js" ></script>      
 </body>

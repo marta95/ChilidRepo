@@ -1,25 +1,41 @@
+body {
+    background-image:url("../image/background.jpg");
+    background-size: cover;
+    
+}
+
 table {
-    width: 40em;
+    width: 750px;
     margin: 2em auto;
+    
+    table-layout: fixed;
+    text-align: center;
+    font-family: sans-serif;
+
 }
 
 th {
-    background: #000;
+    background:lightskyblue;
     color: #fff;
+    margin: 2em auto;
+    padding: 10px;
 }
 
 td {
     width: 10em;
-    padding: 0.3em;
+    padding: 15px;
 }
 
 tbody {
     background: #ccc;
 }
 
+#myTable tr:hover{
+    background-color: lightblue;
+}
 div.pager {
     text-align: center;
-    margin: 1em 0;
+    margin: 0 1px;
 }
 
 div.pager span {
@@ -29,11 +45,29 @@ div.pager span {
     line-height: 1.8;
     text-align: center;
     cursor: pointer;
-    background: #000;
+    background: grey;
     color: #fff;
     margin-right: 0.5em;
 }
 
 div.pager span.active {
-    background: #c00;
+    background: papayawhip;
+}
+.pagination a {
+    color:black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+#textField1{
+    visibility: hidden;
 }
