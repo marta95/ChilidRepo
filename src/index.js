@@ -201,6 +201,7 @@ function parseDate(dateString) {
     //created array -> into Date format
     return new Date(year, month, day);
 };
+
 function bubbleSortDate(array) {  
     var length = array.length;
     var date = [];
@@ -273,7 +274,7 @@ function filtrFunction(array)
                     tableMaker(arr);
                 }
             }
-        }else if (document.getElementById("select").value === "birthdate")
+        }else if (document.getElementById("select").value === "birthDate")
         {
             var dateTxt = parseDate(String(txt));
             var dateTxt1 = parseDate(String(txt1));
@@ -283,7 +284,7 @@ function filtrFunction(array)
                 if(dateTxt <= date && dateTxt1 >= date){
                     arr.push(array[j]);
                     deleterow(arr);
-                        tableMaker(arr);
+                    tableMaker(arr);
                 }
             }      
         } 

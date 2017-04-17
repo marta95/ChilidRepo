@@ -1,6 +1,7 @@
 body {
-    background-image:url("../image/background.jpg");
-    background-size: cover;
+    background-image:url("../image/lel.jpg");
+    
+    background-size: 1600px 800px;
     font-family: sans-serif;
 }
 
@@ -74,14 +75,15 @@ input[type=button] {
     background-color:#eddde7;
     color: #505a62;
 }
+
 input[type=button] {
     border: 2.5px solid #cbb8b7;
     outline: none;
 }
-
-input[type=button].active {
-color: #505a62;
+.group input[type=button]:hover {
+    background-color:#c2c8e5;
 }
+
 
 .group {
   width:300px;
