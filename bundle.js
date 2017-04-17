@@ -74,36 +74,26 @@
 
 
 var array = [];
-
+//reading Json file -> creating array of data
 function myFunction(callback){
     $.getJSON("sluzba.json", function(result){
         array = result;  
         callback(array);
-        tableMaker(array); 
-        //pagination(array);
+        tableMaker(array);
     });
-}
+};
 
 myFunction(function(myArray){
-   //pagination(myArray);
-   //test(myArray);
-   //tableMaker(myArray);
-   //console.log(myArray[0].firstName);
-   
-   //console.log(temp);
-   //test1(myArray);
-
-
+   filtrFunction(myArray);
+   sortId(myArray);
+   sortExp(myArray);
+   sortName(myArray);
+   sortLastName(myArray);
+   sortFunction(myArray);
+   sortDate(myArray);
 });
-function test(myArray){
-    document.getElementById("id").onclick = function(myArray)
-   {
-       var body= document.getElementsByTagName('td1').innerHTML;
-       console.log(body);
-   }
-};
-//var temp = console.log(array[0].firstName);
 
+//creating a table and invoking pagination 
 function tableMaker(array){
   var table = document.getElementById('myTable').getElementsByTagName('tbody')[0];
     for(var i=0; i<array.length;i++)
@@ -122,88 +112,275 @@ function tableMaker(array){
             cell4.innerHTML = "<tr><td1>" +array[i].dateOfBirth+"</td1></tr>";
             cell5.innerHTML = "<tr><td1>" +array[i].function+"</td1></tr>";
             cell6.innerHTML = "<tr><td1>" +array[i].experience+"</td1></tr>";
-        } 
+        }
+        pagination(array);
 };
 
-
-myFunction(function(myArray){
-   test(myArray);
-   //test1(myArray);
-});
-function parseDate(dateStr) {
-    var date = dateStr;
-    var temp = String(date).indexOf(' ');
-    date = date.substring(0, temp != -1 ? temp : date.length);
-    date = String(date).split('.');
-    return date;
+//removes rows with data
+function deleterow(){
+    var tableHeaderCount = 1;
+    var table = document.getElementById('myTable');
+    var rowCount = table.rows.length;
+    for (var i = tableHeaderCount; i < rowCount; i++){
+        table.deleteRow(tableHeaderCount);
+    }
 };
 
-
-
-function test1(myArray){
-    document.getElementById("sort1").onclick = function()
+//Invoking sorting functions ->creating new tables
+function sortId(array){
+    document.getElementById("id").onclick = function()
    {
-       //console.log(myArray);
-       var temp = sorting(myArray);
-       console.log(temp);
-       
+       deleterow();
+       var arr = bubbleSortId(array);
+       tableMaker(arr);
    }
 };
+function sortExp(array){
+    document.getElementById("experience").onclick = function()
+   {
+       deleterow();
+       var arr = bubbleSortExpAsc(array);
+       tableMaker(arr);
+   }
+};
+function sortName(array){
+   document.getElementById("name").onclick = function()
+   {
+       deleterow();
+       var arr = bubbleSortName(array);
+       tableMaker(arr);
+   } 
+};
+function sortLastName(array){
+   document.getElementById("lastName").onclick = function()
+   {
+       deleterow();
+       var arr1 = bubbleSortSurname(array);
+       tableMaker(arr1);
+   } 
+};
+function sortFunction(array){
+   document.getElementById("function").onclick = function()
+   {
+       deleterow();
+       var arr = bubbleSortFunction(array);
+       tableMaker(arr);
+   } 
+};
+function sortDate(array){
+   document.getElementById("birthDate").onclick = function()
+   {
+       deleterow();
+       var arr = bubbleSortDate(array);
+       tableMaker(arr);
+   } 
+};
 
-function pagination(array){
-$('table.paginated').each(function(){
-    
-    var currentPage = 0;
-    var numPerPage = 5;
-    
-    var $table = $(this);
-            
-    $table.bind('repaginate', function(){
-        $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
-    });
-
-    $table.trigger('repaginate');
-            
-    var numRows = array.length;
-    var numPages = Math.ceil(numRows / numPerPage);
-            
-    var $pager = $('<div class="pager"></div>');
-    for (var page = 0; page < numPages; page++) {
-        $('<span class="page-number"></span>').text(page + 1).bind('click', {
-            newPage: page
-        }, function(event) {
-            currentPage = event.data['newPage'];
-            $table.trigger('repaginate');
-            $(this).addClass('active').siblings().removeClass('active');
-            }).appendTo($pager).addClass('clickable');
+//sorting functions -> bubble sort for every attribute
+function bubbleSortId(array) {  
+    var length = array.length;
+     for (var i = (length - 1); i > 0; i--) {
+        for (var j = (length - i); j > 0; j--) {
+            if (array[j].id < array[j - 1].id) {
+                var tmp = array[j];
+                array[j] = array[j - 1];
+                array[j - 1] = tmp;
+            }
         }
-        $pager.insertBefore($table).find('span.page-number:first').addClass('active');
-    });
-}
-
-
-function sorting(array){
-
-    var len = array.length;
-    for (var i = 0; i < len; i++) {
-        var tmp = array[i]; //Copy of the current element. 
-        /*Check through the sorted part and compare with the number in tmp. If large, shift the number*/
-        for (var j = i - 1; j >= 0 && (array[j].experience > array[i].experience); j--) {
-            //Shift the number
-            array[j + 1] =array[j];
+    }
+    return array;
+};
+function bubbleSortExpAsc(array) {  
+    var length = array.length;
+    for (var i = (length - 1); i > 0; i--) {
+        for (var j = (length - i); j > 0; j--) {
+            if (array[j].experience < array[j - 1].experience) {
+                var tmp = array[j];
+                array[j] = array[j - 1];
+                array[j - 1] = tmp;
+            }
         }
-        //Insert the copied number at the correct position
-        //in sorted part. 
-        array[j + 1] = tmp;
+    }
+    return array;
+};
+function bubbleSortName(array) {  
+    var length = array.length;
+    for (var i = (length - 1); i > 0; i--) {
+        for (var j = (length - i); j > 0; j--) {
+            if (array[j].firstName.toLowerCase() < array[j - 1].firstName.toLowerCase()) {
+                var tmp = array[j];
+                array[j] = array[j - 1];
+                array[j - 1] = tmp;
+            }
+        }
+    }
+    return array;
+}; 
+function bubbleSortSurname(array) {  
+    var length = array.length;
+    for (var i = (length - 1); i > 0; i--) {
+        for (var j = (length - i); j > 0; j--) {
+            if (array[j].lastName.toLowerCase() < array[j - 1].lastName.toLowerCase()) {
+                var tmp = array[j];
+                array[j] = array[j - 1];
+                array[j - 1] = tmp;
+            }
+        }
+    }
+    return array;
+}; 
+function bubbleSortFunction(array) {  
+    var length = array.length;
+    for (var i = (length - 1); i > 0; i--) {
+        for (var j = (length - i); j > 0; j--) {
+            if (array[j].function.toLowerCase() < array[j - 1].function.toLowerCase()) {
+                var tmp = array[j];
+                array[j] = array[j - 1];
+                array[j - 1] = tmp;
+            }
+        }
     }
     return array;
 };
 
+//function for data parsing
+function parseDate(dateString) {
+    var date = dateString;
+    var temp = String(date).indexOf(' ');
+    date = date.substring(0, temp != -1 ? temp : date.length);
+    date = String(date).split('.');
+    var day = date[0];var month = date[1];var year = date[2];
+    //created array -> into Date format
+    return new Date(year, month, day);
+};
 
+function bubbleSortDate(array) {  
+    var length = array.length;
+    var date = [];
+    var date1 = [];
+     for (var i = (length - 1); i > 0; i--) {
+        for (var j = (length - i); j > 0; j--) {
+            date = parseDate(array[j].dateOfBirth);
+            date1 = parseDate(array[j-1].dateOfBirth);
+            if (date < date1){
+                var tmp = array[j];
+                array[j] = array[j-1];
+                array[j-1]= tmp;
+            }
+        }
+    }
+    return array;
+};
 
+//filtr functions for every atribute
+function filtrFunction(array)
+{
+    document.getElementById("filtr").onclick = function(){
+        var txt = document.getElementById("textField").value;
+        var txt1 =document.getElementById("textField1").value;
+        var arr = [];
+        if(document.getElementById("select").value === "id")
+        {
+            for(var i = 0; i<array.length;i++){
+                if(txt <= array[i].id && txt1 >= array[i].id){
+                    arr.push(array[i]);
+                    deleterow(arr);
+                    tableMaker(arr);
+                }
+            }
+        }else if(document.getElementById("select").value === "name")
+        {
+            for(var i = 0; i<array.length;i++){
+                if(txt === array[i].firstName){
+                    arr.push(array[i]);
+                    deleterow(arr);
+                    tableMaker(arr);
+                }
+            }
+        }else if(document.getElementById("select").value === "surname")
+        {
+            for(var i = 0; i<array.length;i++){
+                if(txt === array[i].lastName){
+                    arr.push(array[i]);
+                    deleterow(arr);
+                    tableMaker(arr);
+                }
+            }
+        }else if(document.getElementById("select").value === "function")
+        {
+            for(var i = 0; i<array.length;i++)
+            {
+                if(txt === array[i].function){
+                    arr.push(array[i]);
+                    deleterow(arr);
+                    tableMaker(arr);
+                }
+            }
+        }else if (document.getElementById("select").value === "experience")
+        {
+            for(var i = 0; i<array.length;i++)
+            {
+                if(txt <= array[i].experience && txt1 >= array[i].experience){
+                    arr.push(array[i]);
+                    deleterow(arr);
+                    tableMaker(arr);
+                }
+            }
+        }else if (document.getElementById("select").value === "birthDate")
+        {
+            var dateTxt = parseDate(String(txt));
+            var dateTxt1 = parseDate(String(txt1));
+            for (var j = (array.length-1); j >= 0; j--) 
+            {
+                var date = parseDate(array[j].dateOfBirth);
+                if(dateTxt <= date && dateTxt1 >= date){
+                    arr.push(array[j]);
+                    deleterow(arr);
+                    tableMaker(arr);
+                }
+            }      
+        } 
+    };
+};
+
+//pagination function
+function pagination(array){
+$('table.paginated').each(function() {
     
+    var current = 0;
+    var numPerPage = 5; //number of displayed objects
+    var $table = $(this);
 
+    //hides all rows -> displays only the current sliced group
+    $table.bind('pagination', function() {
+        $table.find('tbody tr').hide().slice(current * numPerPage, (current + 1) * numPerPage).show();
+    });
 
+    $table.trigger('pagination');
+    //removes pagination buttons before making new ones
+    var pager;
+    if(pager = document.getElementsByClassName("pager"))
+    {
+        $('#pager').find('span').remove();
+    } 
+    //counting number of pages 
+    var numRows = $table.find('tbody tr').length;
+    var numPages = Math.ceil(numRows / numPerPage);
+
+    //loop for creating all the paggination buttons
+    var $pager = $('<div class="pager" id="pager"></div>');
+    for (var page = 0; page < numPages; page++) {
+        $('<span class="pageNumber"></span>').text(page + 1).bind('click', {
+            newPage: page }, function(event) {
+            current = event.data['newPage'];
+            $table.trigger('pagination');
+            $(this).addClass('active').siblings().removeClass('active');
+        }).appendTo($pager).addClass('clickable');
+    };
+    //insert newly made buttons under the table
+    $pager.insertAfter($table).find('span.pageNumber:first').addClass('active');
+});
+};
 
 /***/ })
 /******/ ]);
