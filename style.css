@@ -1,73 +1,123 @@
 body {
     background-image:url("../image/background.jpg");
     background-size: cover;
-    
+    font-family: sans-serif;
 }
 
 table {
-    width: 750px;
-    margin: 2em auto;
-    
+    width: 755px;
+    margin: 50px auto;
     table-layout: fixed;
+    position: relative;
     text-align: center;
     font-family: sans-serif;
-
 }
 
 th {
-    background:lightskyblue;
-    color: #fff;
-    margin: 2em auto;
+    margin: 20px auto;
     padding: 10px;
+    width: 112px;
+    cursor: pointer;
+    background:#c2c8e5;
+    color: #505a62;
 }
 
 td {
-    width: 10em;
-    padding: 15px;
+    width: 160px;
+    padding: 10px 10px;
+    color: #929091;
 }
 
 tbody {
-    background: #ccc;
+    background: #f2f2f2;
 }
 
 #myTable tr:hover{
-    background-color: lightblue;
+    background-color: #eddde7;
 }
+
+
+input[type=text],select {
+    width:100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    transform: translate(27%, 50%);
+    box-sizing: border-box;
+    display: inline-block;
+    border:none;
+    border-radius: 2px;
+    color: #505a62;
+}
+
+input[type=text]:focus {
+    border: 2.5px solid #cbb8b7;
+    outline: none;
+}
+
+#textField1{
+    visibility: hidden;
+}
+
+select:focus{
+    border: 2.5px solid #cbb8b7;
+    outline: none;
+}
+
+input[type=button] {
+    width:100%;
+    padding: 12px 20px;
+    border-radius:2px;
+    transform: translate(27%, 40%);
+    box-sizing: border-box;
+    cursor:pointer;
+    text-decoration: none;
+    background-color:#eddde7;
+    color: #505a62;
+}
+input[type=button] {
+    border: 2.5px solid #cbb8b7;
+    outline: none;
+}
+
+input[type=button].active {
+color: #505a62;
+}
+
+.group {
+  width:300px;
+  height: 300px;
+  margin: 10px 15px;
+  border-radius: 2px;
+  position:absolute;
+  background: #eaeaed;
+}
+
+section {
+  margin: 0 1.5%;
+  width: 63%;
+  position:absolute;
+}
+
 div.pager {
     text-align: center;
     margin: 0 1px;
 }
 
 div.pager span {
-    display: inline-block;
-    width: 1.8em;
-    height: 1.8em;
+    width: 29px;
+    height: 29px;
     line-height: 1.8;
+    margin-right: 8px;
+    display: inline-block;
     text-align: center;
     cursor: pointer;
-    background: grey;
-    color: #fff;
-    margin-right: 0.5em;
+    background: #c2c8e5;
+    color: #505a62;
 }
 
 div.pager span.active {
-    background: papayawhip;
+    background: #eddde7;
 }
-.pagination a {
-    color:black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-}
-
-.pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
-
-#textField1{
-    visibility: hidden;
+div.pager :hover {
+    background: #e4f1fb;
 }

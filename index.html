@@ -6,7 +6,7 @@
 </head>
 <body> 
         <div id="app"></div>
-        <form>
+        <form class = "fields">
         <script>
             function showField()
             {
@@ -21,28 +21,32 @@
                     textField1.placeholder = "Do:";
                 }else if(choosen === "birthDate"){
                     textField1.style.visibility ="visible";
-                    textField.placeholder = "dd.mm.rrrr";
-                    textField1.placeholder = "dd.mm.rrrr";
+                    textField.placeholder = "Od: dd.mm.rrrr";
+                    textField1.placeholder = "Do: dd.mm.rrrr";
                 }else{
                     textField1.style.visibility = "hidden";
-                    textField.placeholder = "";
+                    textField.placeholder = "...";
                 }
             }
         </script>
-        
-            <select id="select" name="selectData" onchange="showField()">
+        <div class="group">
+            <section>
+                <select id="select" name="selectData" onchange="showField()">
                     <option value="name">Imię</option>
                     <option value="surname">Nazwisko</option>
                     <option value="function">Funkcja</option>
                     <option value="birthDate">Data Urodzenia</option>
                     <option value="experience">Doświadczenie</option>
                     <option value="id">Id</option>
-            </select>
-            <input type="text" id="textField">
-            <input type="text" id="textField1" class="hidden">
-            <input id="filtr" type="button" value="Filtruj">
+                </select>
+                <br><input type="text" id="textField">
+                <input type="text" id="textField1" class="hidden">
+                <br><br><input id="filtr" type="button" value="Filtruj">
+            </section>
         </form>
-        <form> 
+        </div>
+        <form class="table">
+        <aside> 
         <table class="paginated" id="myTable">
             <thead>
                 <tr>
@@ -57,8 +61,9 @@
             <tbody >   
             </tbody>
         </table>
-        </form>
+        </aside>
         
+        </form>
         
         <script src="./bundle.js" ></script>      
 </body>
